@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>list</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <label *ngFor="let iFoto of fotoService.dataFoto; index as position">
+        <ion-img [src]="iFoto.filePath" style="width: 100px; height: 100px;"></ion-img>
+      </label>
+    </ion-row>
+  </ion-grid>
+</ion-content>

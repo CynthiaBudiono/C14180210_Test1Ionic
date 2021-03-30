@@ -1,21 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FotoService } from '../services/foto.service';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  selector: 'app-tab4',
+  templateUrl: './tab4.page.html',
+  styleUrls: ['./tab4.page.scss'],
 })
-export class Tab3Page {
-  getnama:string;
-  idx : number = 1;
-  arrnama: any[];
+export class Tab4Page implements OnInit {
+
   constructor(
     private afStorage : AngularFireStorage,
     public fotoService : FotoService) {
 
   }
+
+  ngOnInit() {
+  }
+
   async ionViewDidEnter(){
     await this.fotoService.loadFoto();
     this.tampilkanData();
@@ -27,23 +29,19 @@ export class Tab3Page {
     refImage.listAll()
     .then((res) => {
       res.items.forEach((itemRef) => {
-        // this.getnama= itemRef.name;
-        // this.arrnama[this.idx] = this.getnama;
-        // alert(this.arrnama[this.idx]);
-        // this.idx= this.idx + 1;
-        // alert(this.getnama);
         itemRef.getDownloadURL().then(url => {
-          var data = {
+          var nodebaru = {
             filePath: url,
             webviewPath: "",
             dataImage: null,
-            namafile: itemRef.name
+            namafile: ""
           }
-          this.fotoService.dataFoto.unshift(data);
+          this.fotoService.dataFoto.unshift(nodebaru);
         });
       });
     }).catch((error) => {
       console.log(error);
     });
   }
+
 }

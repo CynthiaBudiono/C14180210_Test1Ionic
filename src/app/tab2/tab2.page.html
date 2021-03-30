@@ -1,17 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Camera
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card class="ion-text-center">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-button color='primary' shape='round' size='medium' (click)="uploadFoto()">UPLOAD</ion-button>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-grid>
+    <ion-row >
+      <ion-card size="4" style="background-color: azure;">
+        <ion-col *ngFor="let isiFoto of fotoService.dataFoto; let counter = index">
+          <ion-checkbox (click)="pilih(counter)"></ion-checkbox>
+          <ion-img [src]="isiFoto.webviewPath"></ion-img>
+        </ion-col>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="tambahfoto()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
